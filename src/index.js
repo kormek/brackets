@@ -1,4 +1,5 @@
 module.exports = function check(str, bracketsConfig) {
+  
   let mystack = []; 
   let open = [];
    let close = [];
@@ -10,22 +11,16 @@ module.exports = function check(str, bracketsConfig) {
   }
   
   for(let i = 0;i<str.length;i++){
-     
-    if(open.includes(str[i])) {
-     
+    if(mystack[mystack.length-1] === str[i] || str[i] === close[open.indexOf(mystack[mystack.length-1])]){
+      mystack.pop();
+    } else {
       mystack.push(str[i]);
-      
-    } if(close.includes(str[i]) ) 
-      {
-       
-       if(close[open.indexOf(mystack[mystack.length-1])] === str[i]  ) { mystack.pop();
-      } else {
-        
-        return false;
-      }
     }
-
+  
   }
-
-  return true;
+  
+if(mystack.length === 0){return true;} 
+else {
+  return false;
+}
 }
