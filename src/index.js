@@ -11,7 +11,8 @@ module.exports = function check(str, bracketsConfig) {
   }
   
   for(let i = 0;i<str.length;i++){
-    if(mystack[mystack.length-1] === str[i] || str[i] === close[open.indexOf(mystack[mystack.length-1])]){
+    if((mystack[mystack.length-1] === str[i] && close.includes(mystack[str[i]])) || (str[i] === close[open.indexOf(mystack[mystack.length-1])] 
+     )){
       mystack.pop();
     } else {
       mystack.push(str[i]);
